@@ -1,4 +1,4 @@
-#QM-QuickCargo
+# QM-QuickCargo
 
 When in a menu that has your ship's cargo, this mod:
 - Binds the "s" key to sort the currently open cargo tab
