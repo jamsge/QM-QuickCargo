@@ -1,33 +1,33 @@
-﻿using BepInEx;
-using HarmonyLib;
+﻿using HarmonyLib;
 using MGSC;
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 using System.Reflection;
 
 
 namespace QuickCargo
 {
 
-    [BepInPlugin("QuasimorphQuickCargo", "QuickCargo", "1.0.0")]
-    public class Plugin : BaseUnityPlugin
+    public class Plugin
     {
         public static BasePickupItem currentSelectedItem;
         public static List<ItemTab> tabs = new List<ItemTab> {null, null, null, null, null, null, null };
         public static CommonButton sortButton;
         public static ScreenWithShipCargo screen;
         public static int numDown = -1;
-        private void Awake()
+
+        [Hook(ModHookType.AfterBootstrap)]
+        public static void Bootstrap(IModContext context)
         {
             // Plugin startup logic
-            this.Logger.LogInfo("QuickCargo is loaded! :)");
+            Debug.Log("QuickCargo is loaded! :)");
             var harmony = new Harmony("QuickCargo");
             harmony.PatchAll();
             sortButton = null;
         }
 
-        private void Update()
+        [Hook(ModHookType.SpaceUpdateBeforeGameLoop)]
+        public static void Update(IModContext context)
         {
             if (InputHelper.GetKey(KeyCode.Alpha1)) { numDown = 0; }
             else if (InputHelper.GetKey(KeyCode.Alpha2)) { numDown = 1; }
@@ -67,7 +67,6 @@ namespace QuickCargo
     {
         public static void Postfix(ItemTab __instance)
         {
-            Debug.Log("new tab enabled");
             Plugin.screen.RefreshView();
         }
 
