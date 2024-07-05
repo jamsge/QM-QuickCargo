@@ -14,7 +14,7 @@ enjoy fellas. not sure if i'll continue adding stuff to this but i'm still open 
 
 __Installation__
 To use the mod, just drag the .dll file into your BepInEx plugin folder. 
-The .dll is attached to this post and also on the releases page of my github repo
+The .dll is on the releases page of my github repo
 
 __Source__
 if you have questions about my code let me know and i will do my best to answer :)
